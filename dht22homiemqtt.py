@@ -31,6 +31,7 @@ def mqttconnect():
                             "lost", retain=config.mqttretainmessage, qos=config.mqttqos)
     client.connect()
     # homie client config
+    publish("$state", "init")
     publish("$homie", "4.0")
     publish("$name", config.homieclientname)
     publish("$nodes", config.homienodes)
@@ -78,6 +79,7 @@ try:
         print('Luftfeuchtigkeit = ', humidity, '%', '\n')
         sensorpublish()
         if config.usinglightsleep:
+            publish("$state", "sleeping")
             sleep(1.5)
             client.disconnect()
             sleep(.5)
