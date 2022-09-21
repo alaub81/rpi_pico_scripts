@@ -2,6 +2,7 @@
 """DHT22 Homie MQTT
 reads data (Temperature & Humidity) of DHT22 sensor and
 sends values to a MQTT Broker in Homie MQTT Convention format
+You are able to set a value, when humidity alarm is fired.
 """
 
 import config
@@ -37,7 +38,7 @@ def mqttconnect():
     publish("$nodes", config.homienodes)
     # homie node config
     publish(config.homienodes + "/$name", "DHT22 Sensor")
-    publish(config.homienodes + "/$properties", "temperature,humidity")
+    publish(config.homienodes + "/$properties", "temperature,humidity,humidityalarm")
     publish(config.homienodes + "/temperature/$name", "Temperature")
     publish(config.homienodes + "/temperature/$unit", degreecels.encode('utf8'))
     publish(config.homienodes + "/temperature/$datatype", "float")
@@ -46,6 +47,9 @@ def mqttconnect():
     publish(config.homienodes + "/humidity/$unit", "%")
     publish(config.homienodes + "/humidity/$datatype", "float")
     publish(config.homienodes + "/humidity/$settable", "false")
+    publish(config.homienodes + "/humidityalarm/$name", "Humidity Alarm")
+    publish(config.homienodes + "/humidityalarm/$datatype", "boolean")
+    publish(config.homienodes + "/humidityalarm/$settable", "false")
     # homie state ready
     publish("$state", "ready")
 
@@ -53,6 +57,10 @@ def mqttconnect():
 def sensorpublish():
     publish(config.homienodes + "/temperature", "{:.1f}".format(temperature))
     publish(config.homienodes + "/humidity", "{:.1f}".format(humidity))
+    if humidity >= config.humidityalarm:
+        publish(config.homienodes + "/humidityalarm", "true")
+    else:
+        publish(config.homienodes + "/humidityalarm", "false")
     
 
 def dht22sensor():
@@ -78,9 +86,10 @@ try:
         print('Temperatur = ', temperature, degreecels)
         print('Luftfeuchtigkeit = ', humidity, '%', '\n')
         sensorpublish()
+        sleep(.3)
         if config.usinglightsleep:
             publish("$state", "sleeping")
-            sleep(1.5)
+            sleep(.5)
             client.disconnect()
             sleep(.5)
             wificonnection.disconnect()

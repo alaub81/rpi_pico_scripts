@@ -17,6 +17,8 @@ wifiappassword = "<WifiPassword>"
 
 ## DHT GPIO Pin Number ##
 dhtgpiopin = 22
+# At which value humidity alarm will be fired (x in %)
+humidityalarm = 70
 
 ## MQTT Broker ##
 mqttbroker = "<FQDN / IP of MQTTBroker>"
