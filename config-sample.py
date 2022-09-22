@@ -6,6 +6,11 @@ you need to upload that file also on the Pico,
 even if you are just testing your scripts.
 """
 
+## Status LED 
+# LED can show you the status of the running scripts
+# e.g. Wifi Connection Status Code
+ledstatus = True
+
 ## Wifi Settings ##
 wifissid = "<YourSSID>"
 wifipassword = "<YOourWifiPassword>"

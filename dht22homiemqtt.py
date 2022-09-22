@@ -13,7 +13,8 @@ from dht import DHT22
 import machine
 
 #led declaration
-led = machine.Pin('LED', machine.Pin.OUT)
+if config.ledstatus:
+    led = machine.Pin('LED', machine.Pin.OUT)
 #degree symbol decleration
 degreecels = '\u00B0' + "C"
 
@@ -77,36 +78,41 @@ def dht22sensor():
 try:
     # connect to wifi
     wificonnection.connect()
-    sleep(.5)
     # connect to mqtt broker and initialize homie convention
     mqttconnect()
     while True:
-        led.value(True)
+        if config.ledstatus:
+            led.value(True)
         dht22sensor()
         print('Temperatur = ', temperature, degreecels)
         print('Luftfeuchtigkeit = ', humidity, '%', '\n')
         sensorpublish()
-        sleep(.3)
+        sleep(.5)
         if config.usinglightsleep:
             publish("$state", "sleeping")
             sleep(.5)
             client.disconnect()
             sleep(.5)
             wificonnection.disconnect()
-            led.value(False)
-            sleep(.5)
-            machine.lightsleep((config.publishtime-15)*1000)
+            print("done...")
+            #sleep(.5)
+            if config.ledstatus:
+                led.value(False)
+                machine.lightsleep((config.publishtime)*1000-11500)
+            else:
+                machine.lightsleep((config.publishtime)*1000-9200)
             break
         else:
             print("just a break for %s seconds" % config.publishtime)
-            led.value(False)
-            sleep(config.publishtime-15)
+            if config.ledstatus:
+                led.value(False)
+                sleep(config.publishtime-15)
+            else:
+                sleep(config.publishtime-10)
 except RuntimeError as error:
     print(error.args[0])
     pass
 except OSError as e:
     print(e.args[0])
     pass
-print("done...")
-sleep(2)
 machine.reset()

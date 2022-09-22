@@ -16,7 +16,8 @@ import rp2
 # wlan declearation
 wlan = network.WLAN(network.STA_IF)
 # led declaration
-led = machine.Pin('LED', machine.Pin.OUT)
+if config.ledstatus:
+    led = machine.Pin('LED', machine.Pin.OUT)
 
 
 def connect():
@@ -28,24 +29,25 @@ def connect():
     wlan.connect(config.wifissid, config.wifipassword)
 
     # Wait for connect or fail
-    max_wait = 10
+    max_wait = 15
     while max_wait > 0:
         if wlan.status() < 0 or wlan.status() >= 3:
             break
-    max_wait -= 1
-    print('waiting for connection...')
-    sleep(.5)
+        max_wait -= 1
+        print('waiting for connection...')
+        sleep(1)
 
     # Handle connection error
     if wlan.status() != 3:
         raise RuntimeError('network connection failed')
     else:
         # LED blinking
-        for i in range(wlan.status()):
-            led.on()
-            sleep(.1)
-            led.off()
-            sleep(.1)
+        if config.ledstatus:
+            for i in range(wlan.status()):
+                led.on()
+                sleep(.1)
+                led.off()
+                sleep(.1)
         print('connected')
         status = wlan.ifconfig()
         print('ip = ' + status[0])

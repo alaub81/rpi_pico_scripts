@@ -11,19 +11,22 @@ or use a switch on these two pins.
 
 
 import machine
+import config
 from time import sleep
 
-# declare LED variable
-led = machine.Pin('LED', machine.Pin.OUT)
 # declare EXIT Pin GPIO(19)
 sw = machine.Pin(19,machine.Pin.IN,machine.Pin.PULL_UP)
+# declare LED variable
+if config.ledstatus:
+    led = machine.Pin('LED', machine.Pin.OUT)
 
 # Check if GPIO19 is activated
 if  sw.value():
-    # LED blink on Startup
-    led.value(True)
-    sleep(.3)
-    led.value(False)
+    if config.ledstatus:
+        # LED blink on Startup
+        led.value(True)
+        sleep(.3)
+        led.value(False)
     import dht22homiemqtt.py
 else:
     blink = 5
