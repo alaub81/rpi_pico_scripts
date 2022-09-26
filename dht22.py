@@ -19,6 +19,8 @@ degreecels = '\u00B0' + "C"
 # do the things
 while True:
     dht22_sensor.measure()
+    if dht22_sensor.temperature() == -50:
+        dht22_sensor.measure()
     temperature = dht22_sensor.temperature()
     humidity = dht22_sensor.humidity()
     print('Temperature:', temperature, degreecels)

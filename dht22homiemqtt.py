@@ -70,10 +70,12 @@ def dht22sensor():
     # initializing GPIO and DHT22
     dht22_sensor = DHT22(machine.Pin(config.dhtgpiopin, machine.Pin.IN, machine.Pin.PULL_UP))
     dht22_sensor.measure()
+    if dht22_sensor.temperature() == -50:
+        dht22_sensor.measure()
     temperature = dht22_sensor.temperature()
     humidity = dht22_sensor.humidity()
-   
-   
+ 
+
 # do the things
 try:
     # connect to wifi
