@@ -47,3 +47,7 @@ publishtime = 300
 ## LightSleep Mode ##
 # Using LightSleep mode of Pico W to save power (True) just a Loop when "False"
 usinglightsleep = True
+
+## iPerf3
+# where to connect (Server IP or ServerName)?
+iperfserver = '<serverip/servername>'

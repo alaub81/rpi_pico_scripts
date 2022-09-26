@@ -45,6 +45,12 @@ upip.install("micropython-umqtt.robust2")
 ```
 After installation is done, you can use `wifi_disconnect.py` to close the wifi connection.
 
+# iPerf3 - Bandwidth testing `iperf.py`
+If you like to know, how fast the wireless connection of your Raspberry Pi Pico is, try the `iperf.py` Script. It is able to connect to a configured iPerf3 server. You need to copy `wificonnection.py` and the configured `config.py` first. On the server side you need to start iPerf3 as a server:  
+`iperf3 -s`
+More Infos about iPerf you can find here:
+* https://www.laub-home.de/wiki/IPerf_-_Netzwerkbandbreite_messen
+
 # If you like to PING
 * Not tested yet
 * I am not able to install uping at the moment
