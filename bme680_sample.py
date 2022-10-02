@@ -2,8 +2,8 @@
 """BME680 Sensor 
 reads Temperature, Humidity, Pressure and Gas of a BME680 sensor
 you need to download first bme680.py from:
-* https://github.com/robert-hh/BME680-Micropython
-and upload it to the root folder of your pico
+* https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/lib/bme680.py
+and upload it to thelib or root folder of your pico
 """
 
 from bme680 import *
@@ -37,6 +37,5 @@ while True:
     print("Gas: %d ohm" % bme680.gas)
     print("Humidity: %0.1f %%" % bme680.humidity)
     print("Pressure: %0.3f hPa" % bme680.pressure)
-    print("Altitude = %0.2f meters" % bme680.altitude)
- 
+    print("Altitude = %0.2f meters" % bme680.altitude) 
     sleep(3)

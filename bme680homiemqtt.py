@@ -40,7 +40,7 @@ def mqttconnect():
     publish("$name", config.homieclientname)
     publish("$nodes", config.homienodes)
     # homie node config
-    publish(config.homienodes + "/$name", "DHT22 Sensor")
+    publish(config.homienodes + "/$name", "BME680 Sensor")
     publish(config.homienodes + "/$properties", "temperature,humidity,humidityalarm,pressure,gas,altitude")
     publish(config.homienodes + "/temperature/$name", "Temperature")
     publish(config.homienodes + "/temperature/$unit", degreecels.encode('utf8'))

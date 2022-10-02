@@ -41,7 +41,7 @@ mqttretainmessage = True # True or False
 # Homie Configuration / Naming
 homieclientid = "<UniqueHomieClientID>" # "pico-w-001-dht22" for example
 homieclientname = "<Name your Homie Device>" # "Pico W 001 DHT22 Sensor" for example
-homienodes="dht22"
+homienodes="<sensorname>" # for example "dht22" or "bme680"
 # how often should be a publish to MQTT (in Seconds)
 publishtime = 300
 
@@ -64,7 +64,6 @@ sealevelpressure = 1013.25
 # the sensor. This is usually around 5 degrees but varies by use. Use a
 # separate temperature sensor to calibrate this one.
 temperature_offset = -2
-# At which value humidity alarm will be fired (x in %)
 
 
 ### iPerf3 ###
