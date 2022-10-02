@@ -47,12 +47,42 @@ upip.install("micropython-umqtt.robust2")
 After installation is done, you can use `wifi_disconnect.py` to close the wifi connection.
 
 # DHT22 Sensor
+At first you need to connect your DHT22 Sensor to your Pico's GPIO Board.
+
+| Raspberry Pi Pico    | DHT22 Sensor |
+| -------- | --------- | ------------ |
+| Pin 36   | 3V3 +3,3V | 1 (VCC) / +  |
+| Pin 29   | GPIO 22   | 2 (Data)     |
+| Pin 28   | GND       | 4 (GND) / -  |
+
+then you can use the following scripts:
 * dht22_sample.py
+    * small Test Script, just run it via REPL
 * dht22homiemqtt.py
+    * you need to copy `wificonnection.py` and `config.py` to your pico first
+    * and install [umqtt.simple2](#installing-umqttsimple2-or-umqttrobust2) on your board.
+
+More Details here:
+* https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_DHT22_Temperatur_Sensor
 
 # BME680 Sensor
+At first you need to connect your BME680 Sensor to your Pico's GPIO Board.
+| Raspberry Pi Pico         | BME680 Sensor |
+| -------- | -------------- | ------------- |
+| Pin 36   | 3V3 (OUT)      | VCC           |
+| Pin 28   | GND            | GND           |
+| Pin 27   | GP21(I2C0 SCL) | SCL           |
+| Pin 26   | GP20(I2C0 SDA) | SDA           |
+
+then you can use the following scripts:
 * bme680_sample.py
+    * you need to copy `lib/bme680.py` to your pico first 
 * bme680homiemqtt.py
+    * you need to copy `lib/bme680.py`, `wificonnection.py` and `config.py` to your pico first
+    * and install [umqtt.simple2](#installing-umqttsimple2-or-umqttrobust2) on your board.
+
+More Details here:
+* https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_BME680_Raumklima_Sensor
 
 # iPerf3 - Bandwidth testing `iperf.py`
 If you like to know, how fast the wireless connection of your Raspberry Pi Pico is, try the `iperf.py` Script. It is able to connect to a configured iPerf3 server. You need to copy `wificonnection.py` and the configured `config.py` first. On the server side you need to start iPerf3 as a server:  
@@ -77,6 +107,3 @@ uping.ping("google.de")
 * https://www.laub-home.de/wiki/Raspberry_pi_pico_w_-_einstieg_mit_micropython
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_DHT22_Temperatur_Sensor
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_BME680_Raumklima_Sensor
-
-
-
