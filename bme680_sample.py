@@ -3,7 +3,7 @@
 reads Temperature, Humidity, Pressure and Gas of a BME680 sensor
 you need to download first bme680.py from:
 * https://raw.githubusercontent.com/alaub81/rpi_pico_scripts/main/lib/bme680.py
-and upload it to thelib or root folder of your pico
+and upload it to the lib or root folder of your pico
 """
 
 from bme680 import *
