@@ -49,7 +49,7 @@ After installation is done, you can use `wifi_disconnect.py` to close the wifi c
 # DHT22 Sensor
 At first you need to connect your DHT22 Sensor to your Pico's GPIO Board.
 
-| Raspberry Pi Pico    | DHT22 Sensor |
+| Pin Nr   | GPIO Name | DHT22 Sensor |
 | -------- | --------- | ------------ |
 | Pin 36   | 3V3 +3,3V | 1 (VCC) / +  |
 | Pin 29   | GPIO 22   | 2 (Data)     |
@@ -67,7 +67,7 @@ More Details here:
 
 # BME680 Sensor
 At first you need to connect your BME680 Sensor to your Pico's GPIO Board.
-| Raspberry Pi Pico         | BME680 Sensor |
+| Pin Nr   | GPIO Name      | BME680 Sensor |
 | -------- | -------------- | ------------- |
 | Pin 36   | 3V3 (OUT)      | VCC           |
 | Pin 28   | GND            | GND           |
