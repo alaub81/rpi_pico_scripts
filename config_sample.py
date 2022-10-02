@@ -6,26 +6,27 @@ you need to upload that file also on the Pico,
 even if you are just testing your scripts.
 """
 
-## Status LED 
+### Board Configuration ###
+## Status LED ##
 # LED can show you the status of the running scripts
 # e.g. Wifi Connection Status Code
 ledstatus = True
 
-## Wifi Settings ##
+## LightSleep Mode ##
+# Using LightSleep mode of Pico W to save power (True) just a Loop when "False"
+usinglightsleep = True
+
+## Wifi ##
+# Wifi Connection Settings
 wifissid = "<YourSSID>"
 wifipassword = "<YOourWifiPassword>"
 wificountrycode = "<CountryCode>" # "DE" for example
-
-## Wifi Access Point Settings ##
+# Wifi Access Point Settings
 wifiapssid = "<SSID>"
 wifiappassword = "<WifiPassword>"
 
-## DHT GPIO Pin Number ##
-dhtgpiopin = 22
-# At which value humidity alarm will be fired (x in %)
-humidityalarm = 70
 
-## MQTT Broker ##
+### MQTT Broker ###
 mqttbroker = "<FQDN / IP of MQTTBroker>"
 mqttport = 1883 # 8883 for TLS
 mqttusername = "<MQTT-Username>"
@@ -44,10 +45,28 @@ homienodes="dht22"
 # how often should be a publish to MQTT (in Seconds)
 publishtime = 300
 
-## LightSleep Mode ##
-# Using LightSleep mode of Pico W to save power (True) just a Loop when "False"
-usinglightsleep = True
 
-## iPerf3
+### Sensor Configurations ###
+# At which value humidity alarm will be fired (x in %)
+humidityalarm = 70
+
+## DHT22 Sensor ##
+# DHT22 GPIO Pin Number
+dhtgpiopin = 22
+
+## BME680 Sensor ##
+# Initialize BME680 I2C-Pins
+i2c_sda = 20
+i2c_scl = 21
+# change this to match the location's pressure (hPa) at sea level
+sealevelpressure = 1013.25
+# You will usually have to add an offset to account for the temperature of
+# the sensor. This is usually around 5 degrees but varies by use. Use a
+# separate temperature sensor to calibrate this one.
+temperature_offset = -2
+# At which value humidity alarm will be fired (x in %)
+
+
+### iPerf3 ###
 # where to connect (Server IP or ServerName)?
 iperfserver = '<serverip/servername>'

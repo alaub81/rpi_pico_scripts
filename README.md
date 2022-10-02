@@ -5,6 +5,7 @@ That is a collection of all my Raspberry Pi Pico MicroPython Scripts.
 * Managing the Wifi connection
 * Using Pico as Wifi Access Point
 * Reading from a DHT22 Sensor
+* Reading from a BME680 Sensor
 * first Steps with MQTT
 * Sending Sensor Data to MQTT Broker
 
@@ -16,7 +17,7 @@ If you need support or have questions, just open up an issue, or contact me dire
 most of the Scripts here are using for configuration the `config.py` file.  
 There you will configure all the variables which are used in the other python scripts. 
 For example wificonnnection scripts. SSID and Password is configured in the `config.py`.
-Just copy the `config-sample.py` to `config.py`, configure it with your needs and then upload it to your Pico.
+Just copy the `config_sample.py` to `config.py`, configure it with your needs and then upload it to your Pico.
 
 # Autostart Script `main.py`
 To prevent always blank flashing the pico GPIO(19) is used to detect, if the system will break instead of running the MQTT script.
@@ -45,10 +46,18 @@ upip.install("micropython-umqtt.robust2")
 ```
 After installation is done, you can use `wifi_disconnect.py` to close the wifi connection.
 
+# DHT22 Sensor
+* dht22_sample.py
+* dht22homiemqtt.py
+
+# BME680 Sensor
+* bme680_sample.py
+* bme680homiemqtt.py
+
 # iPerf3 - Bandwidth testing `iperf.py`
 If you like to know, how fast the wireless connection of your Raspberry Pi Pico is, try the `iperf.py` Script. It is able to connect to a configured iPerf3 server. You need to copy `wificonnection.py` and the configured `config.py` first. On the server side you need to start iPerf3 as a server:  
 `iperf3 -s`
-More Infos about iPerf you can find here:
+More Informations about iPerf you can find here:
 * https://www.laub-home.de/wiki/IPerf_-_Netzwerkbandbreite_messen
 
 # If you like to PING
@@ -67,6 +76,7 @@ uping.ping("google.de")
 # Links
 * https://www.laub-home.de/wiki/Raspberry_pi_pico_w_-_einstieg_mit_micropython
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_DHT22_Temperatur_Sensor
+* https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_BME680_Raumklima_Sensor
 
 
 

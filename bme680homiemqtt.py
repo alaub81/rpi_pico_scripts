@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-"""DHT22 Homie MQTT
-reads data (Temperature & Humidity) of DHT22 sensor and
+"""BME680 Homie MQTT
+reads data (Temperature, Humidity, Pressure, Gas, Altitude) of BME680 sensor and
 sends values to a MQTT Broker in Homie MQTT Convention format
 You are able to set a value, when humidity alarm is fired.
 """
@@ -9,12 +9,14 @@ import config
 import wificonnection
 from umqtt.simple2 import MQTTClient
 from time import sleep
-from dht import DHT22
+from bme680 import *
+from machine import I2C, Pin
 import machine
+
 
 #led declaration
 if config.ledstatus:
-    led = machine.Pin('LED', machine.Pin.OUT)
+    led = Pin('LED', Pin.OUT)
 #degree symbol decleration
 degreecels = '\u00B0' + "C"
 
@@ -39,7 +41,7 @@ def mqttconnect():
     publish("$nodes", config.homienodes)
     # homie node config
     publish(config.homienodes + "/$name", "DHT22 Sensor")
-    publish(config.homienodes + "/$properties", "temperature,humidity,humidityalarm")
+    publish(config.homienodes + "/$properties", "temperature,humidity,humidityalarm,pressure,gas,altitude")
     publish(config.homienodes + "/temperature/$name", "Temperature")
     publish(config.homienodes + "/temperature/$unit", degreecels.encode('utf8'))
     publish(config.homienodes + "/temperature/$datatype", "float")
@@ -51,6 +53,18 @@ def mqttconnect():
     publish(config.homienodes + "/humidityalarm/$name", "Humidity Alarm")
     publish(config.homienodes + "/humidityalarm/$datatype", "boolean")
     publish(config.homienodes + "/humidityalarm/$settable", "false")
+    publish(config.homienodes + "/pressure/$name", "Pressure")
+    publish(config.homienodes + "/pressure/$unit", "hPa")
+    publish(config.homienodes + "/pressure/$datatype", "float")
+    publish(config.homienodes + "/pressure/$settable", "false")
+    publish(config.homienodes + "/gas/$name","Gas")
+    publish(config.homienodes + "/gas/$unit","ohm")
+    publish(config.homienodes + "/gas/$datatype","integer")
+    publish(config.homienodes + "/gas/$settable","false")
+    publish(config.homienodes + "/altitude/$name","Altitude")
+    publish(config.homienodes + "/altitude/$unit","m")
+    publish(config.homienodes + "/altitude/$datatype","float")
+    publish(config.homienodes + "/altitude/$settable","false")
     # homie state ready
     publish("$state", "ready")
 
@@ -58,22 +72,31 @@ def mqttconnect():
 def sensorpublish():
     publish(config.homienodes + "/temperature", "{:.1f}".format(temperature))
     publish(config.homienodes + "/humidity", "{:.1f}".format(humidity))
+    publish(config.homienodes + "/pressure", "{:.1f}".format(pressure))
+    publish(config.homienodes + "/gas", "{:.1f}".format(gas))
+    publish(config.homienodes + "/altitude", "{:.1f}".format(altitude))
     if humidity >= config.humidityalarm:
         publish(config.homienodes + "/humidityalarm", "true")
     else:
         publish(config.homienodes + "/humidityalarm", "false")
     
 
-def dht22sensor():
+def bme680sensor():
     global temperature
     global humidity
-    # initializing GPIO and DHT22
-    dht22_sensor = DHT22(machine.Pin(config.dhtgpiopin, machine.Pin.IN, machine.Pin.PULL_UP))
-    dht22_sensor.measure()
-    if dht22_sensor.temperature() == -50:
-        dht22_sensor.measure()
-    temperature = dht22_sensor.temperature()
-    humidity = dht22_sensor.humidity()
+    global pressure
+    global gas
+    global altitude
+    # Initialize BME680 Sensor
+    bme680 = BME680_I2C(I2C(0, sda=Pin(config.i2c_sda),scl=Pin(config.i2c_scl)))
+    # set sealevel if it is conffigured
+    if 'config.sealevelpressure' in locals():
+        bme680.sea_level_pressure = config.sealevelpressure
+    temperature = (bme680.temperature + config.temperature_offset)
+    humidity = bme680.humidity
+    pressure = bme680.pressure
+    gas = bme680.gas
+    altitude = bme680.altitude
  
 
 # do the things
@@ -85,9 +108,12 @@ try:
     while True:
         if config.ledstatus:
             led.value(True)
-        dht22sensor()
+        bme680sensor()
         print('Temperature = ', temperature, degreecels)
-        print('Humidity = ', humidity, '%', '\n')
+        print('Humidty = ', humidity, '%')
+        print('Pressure = ', pressure, 'hPa')
+        print('Gas = ', gas, 'ohm')
+        print('Altitude = ', altitude, 'm', '\n')       
         sensorpublish()
         sleep(.5)
         if config.usinglightsleep:
@@ -100,9 +126,9 @@ try:
             #sleep(.5)
             if config.ledstatus:
                 led.value(False)
-                machine.lightsleep((config.publishtime)*1000-11500)
+                machine.lightsleep((config.publishtime)*1000-13100)
             else:
-                machine.lightsleep((config.publishtime)*1000-9200)
+                machine.lightsleep((config.publishtime)*1000-10600)
             break
         else:
             print("just a break for %s seconds" % config.publishtime)
