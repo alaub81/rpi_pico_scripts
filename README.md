@@ -33,7 +33,7 @@ You can use it in other scripts, by just using:
 * wificonnection.disconnect()
 * wificonnection.status()
 
-# Installing umqtt.simple2 or umqtt.robust2
+# Installing `umqtt.simple2` or `umqtt.robust2`
 for the mqtt Scripts you will need `umqtt.simple2`.  
 It is not a Standard Library in Micropython for the Pico, so you need to install it once on the Pico.
 First use the `wifi_connect_simple.py` to connect to your wifi. Then use the following lines in REPL.
@@ -103,6 +103,7 @@ import uping
 # ping to google
 uping.ping("google.de")
 ```
+
 # Links
 * https://www.laub-home.de/wiki/Raspberry_pi_pico_w_-_einstieg_mit_micropython
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_DHT22_Temperatur_Sensor

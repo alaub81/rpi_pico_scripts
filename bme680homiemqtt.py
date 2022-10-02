@@ -14,10 +14,10 @@ from machine import I2C, Pin
 import machine
 
 
-#led declaration
+# led declaration
 if config.ledstatus:
     led = Pin('LED', Pin.OUT)
-#degree symbol decleration
+# degree symbol decleration
 degreecels = '\u00B0' + "C"
 
 # Functions
