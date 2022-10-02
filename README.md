@@ -90,6 +90,15 @@ If you like to know, how fast the wireless connection of your Raspberry Pi Pico 
 More Informations about iPerf you can find here:
 * https://www.laub-home.de/wiki/IPerf_-_Netzwerkbandbreite_messen
 
+# Installing Logging Library `micropython-logging`
+for `logging_sample.py` you will need to frist install the `micropython-logging` Library to your Pico.
+So connect the pico to wifi and install the Library with `upip`
+
+```python
+import upip
+upip.install('micropython-logging')
+```
+
 # If you like to PING
 * Not tested yet
 * I am not able to install uping at the moment
