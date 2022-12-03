@@ -33,7 +33,23 @@ You can use it in other scripts, by just using:
 * wificonnection.disconnect()
 * wificonnection.status()
 
-# Installing `umqtt.simple2` or `umqtt.robust2`
+# Installing `umqtt.simple` or `umqtt.robust`
+for the mqtt Scripts you will need `umqtt.simple`.  
+It is not a Standard Library in Micropython for the Pico, so you need to install it once on the Pico.
+First use the `wifi_connect_simple.py` to connect to your wifi. Then use the following lines in REPL.
+
+```python
+import mip
+upip.install("umqtt.simple")
+# for the robust variant
+upip.install("umqtt.robust")
+```
+After installation is done, you can use `wifi_disconnect.py` to close the wifi connection.
+
+# Deprecated: Installing `umqtt.simple2` or `umqtt.robust2`
+
+**Older Micropython Installation are using `upip` ... but the newer ones changed to `mip`**
+
 for the mqtt Scripts you will need `umqtt.simple2`.  
 It is not a Standard Library in Micropython for the Pico, so you need to install it once on the Pico.
 First use the `wifi_connect_simple.py` to connect to your wifi. Then use the following lines in REPL.
