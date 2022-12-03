@@ -7,7 +7,7 @@ You are able to set a value, when humidity alarm is fired.
 
 import config
 import wificonnection
-from umqtt.simple2 import MQTTClient
+from umqtt.simple import MQTTClient
 from time import sleep
 from dht import DHT22
 import machine

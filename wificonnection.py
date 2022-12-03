@@ -12,6 +12,7 @@ import machine
 from time import sleep
 import network
 import rp2
+import machine
 
 # wlan declearation
 wlan = network.WLAN(network.STA_IF)
@@ -40,6 +41,7 @@ def connect():
     # Handle connection error
     if wlan.status() != 3:
         raise RuntimeError('network connection failed')
+        machine.reset()
     else:
         # LED blinking
         if config.ledstatus:
