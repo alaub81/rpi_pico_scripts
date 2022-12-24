@@ -10,7 +10,7 @@ umqtt.simple Documentation:
 # upip.install("micropython-umqtt.robust2")
 """
 
-from umqtt.simple2 import MQTTClient
+from umqtt.simple import MQTTClient
 from time import sleep
 import config
 import ssl
@@ -21,8 +21,7 @@ mqttlastwill = False
 def connect():
     global client
     client = MQTTClient(config.mqttclientid, config.mqttbroker, port=config.mqttport, user=config.mqttusername,
-                            password=config.mqttpassword, keepalive=10, ssl=config.mqttssl,
-                            ssl_params={"cert_reqs":ssl.CERT_NONE})
+                            password=config.mqttpassword, keepalive=10, ssl=config.mqttssl)
     if mqttlastwill:
         client.set_last_will("homie/" + config.homieclientid + "/$state",
                                 "lost", retain=config.mqttretainmessage, qos=config.mqttqos)

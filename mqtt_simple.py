@@ -7,7 +7,7 @@ umqtt.simple Documentation:
 * https://mpython.readthedocs.io/en/master/library/mPython/umqtt.simple.html
 """
 
-from umqtt.simple2 import MQTTClient
+from umqtt.simple import MQTTClient
 from time import sleep
 import config
 import wificonnection
@@ -17,8 +17,7 @@ wificonnection.connect()
 wificonnection.status()
 
 client = MQTTClient(config.mqttclientid, config.mqttbroker, port=config.mqttport, user=config.mqttusername,
-                            password=config.mqttpassword, keepalive=5, ssl=config.mqttssl,
-                            ssl_params={"cert_reqs":ssl.CERT_NONE})
+                            password=config.mqttpassword, keepalive=5, ssl=config.mqttssl)
 client.connect()
 client.ping()
 client.publish(b"TESTTOPIC", b"TESTPayload 22,5", retain=True, qos=0)
