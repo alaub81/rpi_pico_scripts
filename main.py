@@ -11,6 +11,7 @@ or use a switch on these two pins.
 
 
 import machine
+import sys
 import config
 from time import sleep
 
@@ -32,10 +33,11 @@ if  sw.value():
     # Loading BME680 Sensor Script
     #import bme680homiemqtt.py
 else:
-    blink = 5
-    for i in range(blink):
-        led.value(True)
-        sleep(.1)
-        led.value(False)
-        sleep(.1)
+    if config.ledstatus:
+        blink = 5
+        for i in range(blink):
+            led.value(True)
+            sleep(.1)
+            led.value(False)
+            sleep(.1)
     sys.exit()
