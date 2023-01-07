@@ -145,20 +145,6 @@ mip.install('logging')
 # Measuring execution time with `time_measurement_sample.`
 If you like to know how much time a script takes for execution, just use the code in `time_measurement_sample`. Or just play around a bit with that sample script.
 
-# If you like to PING
-* Not tested yet
-* I am not able to install uping at the moment
-* WorkInProgress
-
-enable the wificonnection at first!
-```python
-import upip
-upip.install("micropython-uping")
-import uping
-# ping to google
-uping.ping("google.de")
-```
-
 # Links
 * https://www.laub-home.de/wiki/Raspberry_pi_pico_w_-_einstieg_mit_micropython
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_DHT22_Temperatur_Sensor
