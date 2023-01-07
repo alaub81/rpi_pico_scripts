@@ -9,17 +9,16 @@ or use a switch on these two pins.
 * on entering the python script led will flash 1 time
 """
 
-
-import machine
-import sys
 import config
 from time import sleep
+from machine import Pin
+from sys import exit
 
 # declare EXIT Pin GPIO(19)
-sw = machine.Pin(19,machine.Pin.IN,machine.Pin.PULL_UP)
+sw = Pin(19,Pin.IN,Pin.PULL_UP)
 # declare LED variable
 if config.ledstatus:
-    led = machine.Pin('LED', machine.Pin.OUT)
+    led = Pin('LED', Pin.OUT)
 
 # Check if GPIO19 is activated
 if  sw.value():
@@ -29,7 +28,7 @@ if  sw.value():
         sleep(.3)
         led.value(False)
     # Loading DHT22 Sensor Script
-    import dht22homiemqtt.py
+    import dht22homiemqtt20.py
     # Loading BME680 Sensor Script
     #import bme680homiemqtt.py
 else:
@@ -40,4 +39,4 @@ else:
             sleep(.1)
             led.value(False)
             sleep(.1)
-    sys.exit()
+    exit()

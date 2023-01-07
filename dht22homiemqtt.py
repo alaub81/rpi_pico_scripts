@@ -96,13 +96,16 @@ try:
             client.disconnect()
             sleep(.5)
             wificonnection.disconnect()
-            print("done...")
+            print('going to sleep for: ', config.publishtime, 's')
             #sleep(.5)
             if config.ledstatus:
                 led.value(False)
-                machine.lightsleep((config.publishtime)*1000-11500)
+                machine.lightsleep((config.publishtime)*1000)
+                #machine.deepsleep((config.publishtime)*1000)
             else:
-                machine.lightsleep((config.publishtime)*1000-9200)
+                machine.lightsleep((config.publishtime)*1000)
+                #machine.deepsleep((config.publishtime)*1000)
+            print("going to break the loop")
             break
         else:
             print("just a break for %s seconds" % config.publishtime)
@@ -112,9 +115,11 @@ try:
             else:
                 sleep(config.publishtime-10)
 except RuntimeError as error:
-    print(error.args[0])
+    print('Runtime Error: ', error.args[0])
     pass
 except OSError as e:
-    print(e.args[0])
+    print('OS Error: ', e.args[0])
     pass
+sleep(0.1)
+print("machine reset ...")
 machine.reset()

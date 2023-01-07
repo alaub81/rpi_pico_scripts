@@ -8,40 +8,40 @@ you'll need config.py to configure SSID, Password and CountryCode
 """
 
 import config
-import machine
+from machine import reset, Pin
 from time import sleep
 import network
-import rp2
-import machine
 
 # wlan declearation
 wlan = network.WLAN(network.STA_IF)
 # led declaration
 if config.ledstatus:
-    led = machine.Pin('LED', machine.Pin.OUT)
+    led = Pin('LED', Pin.OUT)
 
 
 def connect():
-    # Setting Country
-    rp2.country(config.wificountrycode)
+    # Setting Country Code if you like to, just uncomment the next two lines
+    # from rp2 import country
+    # country(config.wificountrycode)
 
     # activate wifi
     wlan.active(True)
     wlan.connect(config.wifissid, config.wifipassword)
+    #wlan.connect(config.wifissid, config.wifipassword, hostname=config.wifihostname)
 
     # Wait for connect or fail
-    max_wait = 15
+    print('waiting for wifi connection ...')
+    max_wait = 30
     while max_wait > 0:
         if wlan.status() < 0 or wlan.status() >= 3:
             break
         max_wait -= 1
-        print('waiting for connection...')
-        sleep(1)
+        sleep(.2)
 
     # Handle connection error
     if wlan.status() != 3:
-        raise RuntimeError('network connection failed')
-        machine.reset()
+        raise RuntimeError('wifi connection failed')
+        reset()
     else:
         # LED blinking
         if config.ledstatus:
@@ -50,7 +50,7 @@ def connect():
                 sleep(.1)
                 led.off()
                 sleep(.1)
-        print('connected')
+        print('wifi connected: ' + str(wlan.status()))
         status = wlan.ifconfig()
         print('ip = ' + status[0])
 
@@ -59,8 +59,8 @@ def disconnect():
     wlan.disconnect()
     wlan.active(False)
     wlan.deinit()
-    print("Disconnected: " + str(wlan.status()))
+    print('wifi disconnected: ' + str(wlan.status()))
     
 
 def status():
-    print("Connected: " + str(wlan.isconnected()))
+    print("wifi status: " + str(wlan.isconnected()))
