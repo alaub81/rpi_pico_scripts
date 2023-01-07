@@ -86,7 +86,7 @@ then you can use the following scripts:
     * small Test Script, just run it via REPL
 * dht22homiemqtt.py
     * you need to copy `wificonnection.py` and `config.py` to your pico first
-    * and install [umqtt.simple2](#installing-umqttsimple2-or-umqttrobust2) on your board.
+    * and install [umqtt.simple](#installing-umqttsimple-or-umqttrobust) on your board.
 
 More Details here:
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_DHT22_Temperatur_Sensor
