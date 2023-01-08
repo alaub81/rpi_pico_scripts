@@ -142,7 +142,7 @@ import mip
 mip.install('logging')
 ```
 
-# Measuring execution time with `time_measurement_sample.`
+# Measuring execution time with `time_measurement_sample.py`
 If you like to know how much time a script takes for execution, just use the code in `time_measurement_sample`. Or just play around a bit with that sample script.
 
 # Links
