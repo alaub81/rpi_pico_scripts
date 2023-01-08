@@ -143,7 +143,7 @@ mip.install('logging')
 ```
 
 # Measuring execution time with `time_measurement_sample.py`
-If you like to know how much time a script takes for execution, just use the code in `time_measurement_sample`. Or just play around a bit with that sample script.
+If you like to know how much time a script takes for execution, just use the code in `time_measurement_sample.py`. Or just play around a bit with that sample script.
 
 # Links
 * https://www.laub-home.de/wiki/Raspberry_pi_pico_w_-_einstieg_mit_micropython
