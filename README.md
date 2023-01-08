@@ -7,6 +7,7 @@ That is a collection of all my Raspberry Pi Pico MicroPython Scripts.
 * Reading from a DHT22 Sensor
 * Reading from a BME680 Sensor
 * Reading from a bh1750 illuminance sensor
+* Controlling a RGB LED
 * first Steps with MQTT
 * Sending Sensor Data to MQTT Broker
 * Sample for logging in python
@@ -82,9 +83,9 @@ At first you need to connect your DHT22 Sensor to your Pico's GPIO Board.
 | Pin 28   | GND       | 4 (GND) / -  |
 
 then you can use the following scripts:
-* dht22_sample.py
+* `dht22_sample.py`
     * small Test Script, just run it via REPL
-* dht22homiemqtt.py
+* `dht22homiemqtt.py`
     * you need to copy `wificonnection.py` and `config.py` to your pico first
     * and install [umqtt.simple](#installing-umqttsimple-or-umqttrobust) on your board.
 
@@ -101,9 +102,9 @@ At first you need to connect your BME680 Sensor to your Pico's GPIO Board.
 | Pin 26   | GP20(I2C0 SDA) | SDA           |
 
 then you can use the following scripts:
-* bme680_sample.py
+* `bme680_sample.py`
     * you need to copy `lib/bme680.py` to your pico first 
-* bme680homiemqtt.py
+* `bme680homiemqtt.py`
     * you need to copy `lib/bme680.py`, `wificonnection.py` and `config.py` to your pico first
     * and install [umqtt.simple](#installing-umqttsimple-or-umqttrobust) on your board.
 
@@ -120,11 +121,35 @@ At first you need to connect your BH1750 sensor to your Pico's GPIO Board.
 | Pin 26   | GP20(I2C0 SDA) | SDA           |
 
 then you can use the following script:
-* bh1750_sample.py
+* `bh1750_sample.py`
     * you need to copy `lib/bh1750.py` to your pico first
 
 More Details here:
 * https://www.laub-home.de/wiki/Raspberry_Pi_Pico_W_BH1750_Helligkeitssensor
+
+# RGB LED
+At first you need to connect your RGB LED to your Pico's GPIO Board.
+| Pin Nr   | GPIO Name      | RGB LED  |
+| -------- | -------------- | -------- |
+| Pin 15   | GP11           | R        |
+| Pin 16   | GP12           | G        |
+| Pin 17   | GP13           | B        |
+| Pin 18   | GND            | GND      |
+
+then you can use the following scripts:
+* `rgbLED_sample.py`
+    * sample script to just enable / disable the three colors
+* `rgbLED_hexcode_sample.py`
+    * sample script to play around with hexadezimal color codes:
+        * FF0000 (Red)
+        * FFD700 (Gold)
+        * 00FF00 (Lime)
+        * 00FF33 (SpringGreen)
+        * 00FFFF (Aqua)
+        * 0000FF (Blue)
+        * 191970 (MidnightBlue)
+        * FF00FF (Magenta)
+        * FFFFFF (White)
 
 # iPerf3 - Bandwidth testing `iperf.py`
 If you like to know, how fast the wireless connection of your Raspberry Pi Pico is, try the `iperf.py` Script. It is able to connect to a configured iPerf3 server. You need to copy `wificonnection.py` and the configured `config.py` first. On the server side you need to start iPerf3 as a server:  
