@@ -32,5 +32,5 @@ def publish(topic, payload):
     client.publish(topic, payload, retain=config.mqttretainmessage, qos=config.mqttqos)
 
 
-def diconnect():
+def disconnect():
     client.disconnect()
