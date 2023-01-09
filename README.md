@@ -151,6 +151,9 @@ then you can use the following scripts:
         * FF00FF (Magenta)
         * FFFFFF (White)
 
+More Details here:
+* https://www.laub-home.de/wiki/Raspberry_Pi_Pico_RGB_LED_steuern
+
 # iPerf3 - Bandwidth testing `iperf.py`
 If you like to know, how fast the wireless connection of your Raspberry Pi Pico is, try the `iperf.py` Script. It is able to connect to a configured iPerf3 server. You need to copy `wificonnection.py` and the configured `config.py` first. On the server side you need to start iPerf3 as a server:  
 `iperf3 -s`
