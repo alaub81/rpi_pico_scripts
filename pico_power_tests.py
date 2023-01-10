@@ -15,10 +15,6 @@ import config
 
 # How long testing in seconds
 testtime=5
-# MQTT Last Will
-mqttlastwill = False
-# DHT22 GPIO Pin Number
-gpio=22
 
 # Define LED
 led = machine.Pin('LED', machine.Pin.OUT)
@@ -34,9 +30,6 @@ def connect():
     global client
     client = MQTTClient(config.mqttclientid, config.mqttbroker, port=config.mqttport, user=config.mqttusername,
                             password=config.mqttpassword, keepalive=10, ssl=config.mqttssl)
-    if mqttlastwill:
-        client.set_last_will("homie/" + config.homieclientid + "/$state",
-                                "lost", retain=config.mqttretainmessage, qos=config.mqttqos)
     client.connect()
 
 def publish(topic, payload):
