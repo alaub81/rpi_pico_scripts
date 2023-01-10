@@ -14,7 +14,7 @@ import wificonnection
 import config
 
 # How long testing in seconds
-testtime=5
+testtime=7
 # MQTT Last Will
 mqttlastwill = False
 # DHT22 GPIO Pin Number
@@ -59,6 +59,7 @@ def dht22sensor():
     print('Humidity = ', humidity, '%', '\n')
 
 # first sleep a bit
+time.sleep(testtime)
 led.on()
 time.sleep(2)
 led.off()
@@ -66,7 +67,7 @@ time.sleep(1)
 # get the start time
 st = time.time()
 
-xtimes=0
+xtimes=1
 
 # sleep test
 ledblinking(xtimes)
