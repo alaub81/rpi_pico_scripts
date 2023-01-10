@@ -14,15 +14,7 @@ import wificonnection
 import config
 
 # How long testing in seconds
-<<<<<<< HEAD
 testtime=7
-# MQTT Last Will
-mqttlastwill = False
-# DHT22 GPIO Pin Number
-gpio=22
-=======
-testtime=5
->>>>>>> 4fe3c7221830d7f7d6ba6ae482988a648913b652
 
 # Define LED
 led = machine.Pin('LED', machine.Pin.OUT)
