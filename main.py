@@ -29,11 +29,11 @@ if  sw.value():
         led.value(False)
     # Loading DHT22 Sensor Script
     #import dht22homiemqtt.py
-    #import dht22homiemqtt20.py
+    import dht22homiemqtt20.py
     # Loading BME680 Sensor Script
     #import bme680homiemqtt.py
     # Loading Pico Power Test Script
-    import pico_power_tests.py
+    #import pico_power_tests.py
 else:
     if config.ledstatus:
         blink = 5
