@@ -28,7 +28,6 @@ if  sw.value():
         sleep(.3)
         led.value(False)
     # Loading DHT22 Sensor Script
-    #import dht22homiemqtt.py
     import dht22homiemqtt.py
     # Loading BME680 Sensor Script
     #import bme680homiemqtt.py
