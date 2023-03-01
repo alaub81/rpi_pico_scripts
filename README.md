@@ -1,6 +1,6 @@
 # Raspberry Pi Pico MicroPython Script collection
 
-That is a collection of all my Raspberry Pi Pico MicroPython Scripts.
+This is a collection of all my Raspberry Pi Pico MicroPython Scripts.
 
 * First Steps with Pico LED and Pico's Temperature sensor.
 * Managing the Wifi connection
@@ -16,6 +16,8 @@ That is a collection of all my Raspberry Pi Pico MicroPython Scripts.
 
 You will find a short Description of the Scripts on the top of each script.  
 If you need support or have questions, just open up an issue, or contact me directly.
+
+You should use Micropython for Raspberry Pico `rp2-pico-w-20230228-unstable-v1.19.1-910-g4937174b4.uf2` or later!
 
 ## Configuration File `config.py`
 
