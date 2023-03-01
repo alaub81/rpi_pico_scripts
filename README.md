@@ -21,8 +21,9 @@ If you need support or have questions, just open up an issue, or contact me dire
 
 most of the Scripts here are using for configuration the `config.py` file.  
 There you will configure all the variables which are used in the other python scripts.
-For example wificonnnection scripts. SSID and Password is configured in the `config.py`.
-Just copy the `config_sample.py` to `config.py`, configure it with your needs and then upload it to your Pico.
+For example wificonnnection scripts. The SSID, Password, hostname and countrycode is configured in the `config.py`.
+Just copy the `config_sample.py` to `config.py`, configure it with your needs and then upload it to your Pico.  
+For details have a look at the comments in the script.
 
 ## Setup the Pico `setup_pico.py`
 
