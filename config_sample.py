@@ -20,7 +20,9 @@ usinglightsleep = True
 # Wifi Connection Settings
 wifissid = "<YourSSID>"
 wifipassword = "<YOourWifiPassword>"
-# Optional: if you like to use, uncomment the country code lines in wificonnection.py
+# Set a hostname
+wifihostname = "<Hostname>"
+# Which Wifi Country Code?
 wificountrycode = "<CountryCode>" # "DE" for example
 # Wifi Access Point Settings
 wifiapssid = "<SSID>"

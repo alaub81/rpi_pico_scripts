@@ -20,9 +20,11 @@ if config.ledstatus:
 
 
 def connect():
-    # Setting Country Code if you like to, just uncomment the next two lines
-    # from rp2 import country
-    # country(config.wificountrycode)
+    # Setting Country Code
+    network.country(config.wificountrycode)
+    
+    # Setting Hostname
+    network.hostname(config.wifihostname)
 
     # activate wifi
     wlan.active(True)
