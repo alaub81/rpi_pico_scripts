@@ -29,7 +29,6 @@ def connect():
     # activate wifi
     wlan.active(True)
     wlan.connect(config.wifissid, config.wifipassword)
-    #wlan.connect(config.wifissid, config.wifipassword, hostname=config.wifihostname)
 
     # Wait for connect or fail
     print('waiting for wifi connection ...')
