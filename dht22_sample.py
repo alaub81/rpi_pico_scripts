@@ -12,7 +12,8 @@ gpio=22
 
 # initializing GPIO and DHT22
 sleep(1)
-dht22_sensor = DHT22(Pin(gpio, Pin.IN, Pin.PULL_UP))
+#dht22_sensor = DHT22(Pin(gpio, Pin.IN, Pin.PULL_UP))
+dht22_sensor = DHT22(Pin(gpio))
 
 #degree symbol decleration
 degreecels = '\u00B0' + "C"
