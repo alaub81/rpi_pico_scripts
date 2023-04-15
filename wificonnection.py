@@ -62,6 +62,7 @@ def disconnect():
     wlan.deinit()
     # Quick Fix for deinit and lightsleep mode problem https://github.com/micropython/micropython/discussions/10889
     wlanled = Pin('LED', Pin.OUT)
+    Pin(23,Pin.IN,Pin.PULL_DOWN)
     print('wifi disconnected: ' + str(wlan.status()))
     
 
