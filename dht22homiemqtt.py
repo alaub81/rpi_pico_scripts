@@ -3,11 +3,13 @@
 reads data (Temperature & Humidity) of DHT22 sensor and
 sends values to a MQTT Broker in Homie MQTT Convention format
 You are able to set a value, when humidity alarm is fired.
+
+You need to copy wificonnection.py and a configured config.py to your pico!
+umqtt.simple will install, if not available on the pico
 """
 
 import config
 from wificonnection import connect, disconnect
-from umqtt.simple import MQTTClient
 from time import sleep
 from dht import DHT22
 from machine import reset, lightsleep, Pin
@@ -20,6 +22,21 @@ if config.ledstatus:
 degreecels = '\u00B0' + "C"
 
 # Functions
+def loadumqtt():
+    global MQTTClient
+    try:
+        from umqtt.simple import MQTTClient
+    except ImportError:
+        print("Module umqtt.simple not found, try to install it now...")
+        import mip
+        mip.install("umqtt.simple")
+        try:
+            from umqtt.simple import MQTTClient
+        except ImportError:
+            print("Module umqtt.simple still not available... EXIT")
+            reset()
+
+
 def publish(topic, payload):
     client.publish("homie/" + config.homieclientid + "/" + topic,
                    payload, retain=config.mqttretainmessage, qos=config.mqttqos)
@@ -85,6 +102,8 @@ try:
     dht22sensor()
     # connect to wifi
     connect()
+    # install / load umqtt
+    loadumqtt()
     if config.ledstatus:
         led.value(True)
     # connect to mqtt broker and initialize homie convention
