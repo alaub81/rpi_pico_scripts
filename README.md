@@ -64,14 +64,16 @@ It is not a Standard Library in Micropython for the Pico, so you need to install
 
 ```python
 import mip
-upip.install("umqtt.simple")
+mip.install('umqtt.simple')
 # for the robust variant
-upip.install("umqtt.robust")
+mip.install("umqtt.robust")
 ```
 
 After installation is done, you can use `wifi_disconnect.py` to close the wifi connection.
 
-## Deprecated: Installing `umqtt.simple2` or `umqtt.robust2`
+Or just have a look at `install_umqtt.py`
+
+## Deprecated: Installing `umqtt.simple2` or `umqtt.robust2` via `upip`
 
 **Older Micropython Installation are using `upip` ... but the newer ones changed to `mip`**
 

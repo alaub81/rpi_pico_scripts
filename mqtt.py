@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """MQTT Managing
 Using MQTT Connection as Modules.
-to install umqtt.simple2 just have look at install_umqttsimple2.py
+to install umqtt.simple2 just have look at install_umqtt.py
 Use and upload config.py and wificonnection.py to Pico at first
 umqtt.simple Documentation:
 * https://mpython.readthedocs.io/en/master/library/mPython/umqtt.simple.html
-# import upip
-# upip.install("micropython-umqtt.simple2")
-# upip.install("micropython-umqtt.robust2")
+import mip
+mip.install('umqtt.simple')
+# for the robust variant
+mip.install("umqtt.robust")
 """
 
 from umqtt.simple import MQTTClient

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """MQTT Simple test
 a simple script to send a message to the MQTT Broker
-to install umqtt.simple2 just have look at install_umqttsimple2.py
+to install umqtt.simple just have look at install_umqtt.py
 Use and upload config.py and wificonnection.py to Pico at first
 umqtt.simple Documentation:
 * https://mpython.readthedocs.io/en/master/library/mPython/umqtt.simple.html

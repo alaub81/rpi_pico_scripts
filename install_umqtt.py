@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 """UMQTT Simple Installation
 you need to copy wificonnection.py and config.py to pico first.
-* installation umqtt.simple2
-* Installation umqtt.robust2
+* installation umqtt.simple
+or optional:
+* Installation umqtt.robust
 """
 
 import wificonnection
-import upip
+import mip
 from time import sleep
 
 wificonnection.connect()
 sleep(1)
-upip.install("micropython-umqtt.simple2")
-upip.install("micropython-umqtt.robust2")
+mip.install('umqtt.simple')
+# uncomment for the robust variant
+#mip.install("umqtt.robust")
 wificonnection.disconnect()
