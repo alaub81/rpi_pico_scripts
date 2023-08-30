@@ -13,13 +13,13 @@ wificonnection.connect()
 # check if uiperf3 module is already installed
 try:
     import uiperf3
-except ModuleNotFoundError or ImportError:
+except ImportError:
     print("Module uiperf3 not found, try to install it now...")
-    import upip
-    upip.install("uiperf3")
+    import mip
+    mip.install("uiperf3")
     try:
         import uiperf3
-    except ModuleNotFoundError or ImportError:
+    except ImportError:
         print("Module uiperf3 still not available... EXIT")
         sys.exit(1)
 # Starting Client to iperf3 server
