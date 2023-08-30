@@ -106,7 +106,6 @@ then you can use the following scripts:
   * small Test Script, just run it via REPL
 * `dht22homiemqtt.py`
   * you need to copy `wificonnection.py` and `config.py` to your pico first
-  * and install [umqtt.simple](#installing-umqttsimple-or-umqttrobust) on your board.
 
 More Details here:
 
